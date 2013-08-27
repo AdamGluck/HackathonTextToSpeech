@@ -10,7 +10,7 @@
 #import <AVFoundation/AVAudioPlayer.h>
 #import <AVFoundation/AVAudioSession.h>
 #import "DMViewController.h"
-#import "SpeechConfig.h"
+//#import "SpeechConfig.h"
 #import "SpeechAuth.h"
 #import "TTSRequest.h"
 #import "ATTSpeechKit.h"

@@ -8,13 +8,18 @@
 
 #import "DMTextToSpeechEasyAPI.h"
 @interface DMTextToSpeechEasyAPI()<ATTSpeechServiceDelegate>
-@property (retain,nonatomic) NSString* oauthToken;
-@property (retain,nonatomic) NSString* ttsInProgress;
+@property (strong,nonatomic) NSString* oauthToken;
+@property (strong,nonatomic) NSString* ttsInProgress;
 @property (retain,nonatomic) AVAudioPlayer* audioPlayer;
+@property (strong, nonatomic) NSURL * speechServiceURL;
+@property (strong, nonatomic) NSURL * TTSUrl;
+@property (strong, nonatomic) NSURL * oauthURL;
+@property (strong, nonatomic) NSString * oauthKey;
+@property (strong, nonatomic) NSString * oauthSecret;
+@property (strong, nonatomic) NSString * oauthScope;
 @end
 
 @implementation DMTextToSpeechEasyAPI
-
 
 #pragma mark - public methods
 
@@ -22,6 +27,13 @@
 {
     self = [super init];
     if (self){
+        NSDictionary *dictionary = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Info" ofType:@"plist"]];
+        self.oauthKey = dictionary[@"ATTOauthKey"];
+        self.oauthSecret = dictionary[@"ATTSecret"];
+        self.speechServiceURL = [NSURL URLWithString: @"https://api.att.com/speech/v3/speechToText"];
+        self.TTSUrl = [NSURL URLWithString: @"https://api.att.com/speech/v3/textToSpeech"];
+        self.oauthURL = [NSURL URLWithString: @"https://api.att.com/oauth/token"];
+        self.oauthScope = @"TTS,SPEECH";
         [self prepareSpeech];
     }
     return self;
@@ -46,7 +58,7 @@
     
     // Access the SpeechKit singleton.
     ATTSpeechService* speechService = [ATTSpeechService sharedSpeechService];
-    speechService.recognitionURL = SpeechServiceUrl();
+    speechService.recognitionURL = self.oauthURL;
     speechService.delegate = self;
     speechService.speechContext = @"QuestionAndAnswer";
     [self validateOAuthForService: speechService];
@@ -57,7 +69,7 @@
 #pragma mark - implementation methods
 - (void) startTTS: (NSString*) textToSpeak
 {
-    TTSRequest* tts = [TTSRequest forService: TTSUrl() withOAuth: self.oauthToken];
+    TTSRequest* tts = [TTSRequest forService: self.TTSUrl withOAuth: self.oauthToken];
     self.ttsInProgress = textToSpeak;
     [tts postText: textToSpeak forClient: ^(NSData* audioData, NSError* error) {
         if (![textToSpeak isEqualToString: self.ttsInProgress]) {
@@ -91,10 +103,10 @@
 
 - (void) validateOAuthForService: (ATTSpeechService*) speechService
 {
-    [[SpeechAuth authenticatorForService: SpeechOAuthUrl()
-                                  withId: SpeechOAuthKey()
-                                  secret: SpeechOAuthSecret()
-                                   scope: SpeechOAuthScope()]
+    [[SpeechAuth authenticatorForService: self.oauthURL
+                                  withId: self.oauthKey
+                                  secret: self.oauthSecret
+                                   scope: self.oauthScope]
      fetchTo: ^(NSString* token, NSError* error) {
          if (token) {
              self.oauthToken = token;
