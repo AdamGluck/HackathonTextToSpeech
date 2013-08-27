@@ -18,6 +18,16 @@
 		0F379FBE17BAE4F10013F698 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F379FBD17BAE4F10013F698 /* Default-568h@2x.png */; };
 		0F379FC117BAE4F10013F698 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F379FBF17BAE4F10013F698 /* MainStoryboard.storyboard */; };
 		0F379FC417BAE4F10013F698 /* DMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F379FC317BAE4F10013F698 /* DMViewController.m */; };
+		0F379FCC17BAE5530013F698 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 0F379FCB17BAE5530013F698 /* .gitignore */; };
+		0F379FCE17BAE58A0013F698 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F379FCD17BAE58A0013F698 /* AudioToolbox.framework */; };
+		0F379FD017BAE59A0013F698 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F379FCF17BAE59A0013F698 /* AVFoundation.framework */; };
+		0F379FD217BAE5A70013F698 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F379FD117BAE5A70013F698 /* CFNetwork.framework */; };
+		0F379FD417BAE5B00013F698 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F379FD317BAE5B00013F698 /* Security.framework */; };
+		0F379FD717BAE6170013F698 /* DMTextToSpeechEasyAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F379FD617BAE6170013F698 /* DMTextToSpeechEasyAPI.m */; };
+		0F520AEF17CC6CF00081CABA /* ATTSpeechKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F520AED17CC6CF00081CABA /* ATTSpeechKit.a */; };
+		0F520AF417CC711A0081CABA /* SpeechAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F520AF117CC71190081CABA /* SpeechAuth.m */; };
+		0F520AF517CC711A0081CABA /* TTSRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F520AF317CC71190081CABA /* TTSRequest.m */; };
+		0F520AF817CC71C30081CABA /* SpeechConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F520AF717CC71C20081CABA /* SpeechConfig.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +47,21 @@
 		0F379FC017BAE4F10013F698 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		0F379FC217BAE4F10013F698 /* DMViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DMViewController.h; sourceTree = "<group>"; };
 		0F379FC317BAE4F10013F698 /* DMViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DMViewController.m; sourceTree = "<group>"; };
+		0F379FCB17BAE5530013F698 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		0F379FCD17BAE58A0013F698 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		0F379FCF17BAE59A0013F698 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		0F379FD117BAE5A70013F698 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		0F379FD317BAE5B00013F698 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		0F379FD517BAE6170013F698 /* DMTextToSpeechEasyAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMTextToSpeechEasyAPI.h; sourceTree = "<group>"; };
+		0F379FD617BAE6170013F698 /* DMTextToSpeechEasyAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMTextToSpeechEasyAPI.m; sourceTree = "<group>"; };
+		0F520AED17CC6CF00081CABA /* ATTSpeechKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = ATTSpeechKit.a; sourceTree = "<group>"; };
+		0F520AEE17CC6CF00081CABA /* ATTSpeechKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATTSpeechKit.h; sourceTree = "<group>"; };
+		0F520AF017CC71190081CABA /* SpeechAuth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeechAuth.h; sourceTree = "<group>"; };
+		0F520AF117CC71190081CABA /* SpeechAuth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpeechAuth.m; sourceTree = "<group>"; };
+		0F520AF217CC71190081CABA /* TTSRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTSRequest.h; sourceTree = "<group>"; };
+		0F520AF317CC71190081CABA /* TTSRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTSRequest.m; sourceTree = "<group>"; };
+		0F520AF617CC71C20081CABA /* SpeechConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeechConfig.h; sourceTree = "<group>"; };
+		0F520AF717CC71C20081CABA /* SpeechConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpeechConfig.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,9 +69,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F379FD417BAE5B00013F698 /* Security.framework in Frameworks */,
+				0F379FD217BAE5A70013F698 /* CFNetwork.framework in Frameworks */,
+				0F379FD017BAE59A0013F698 /* AVFoundation.framework in Frameworks */,
+				0F379FCE17BAE58A0013F698 /* AudioToolbox.framework in Frameworks */,
 				0F379FA817BAE4F00013F698 /* UIKit.framework in Frameworks */,
 				0F379FAA17BAE4F00013F698 /* Foundation.framework in Frameworks */,
 				0F379FAC17BAE4F00013F698 /* CoreGraphics.framework in Frameworks */,
+				0F520AEF17CC6CF00081CABA /* ATTSpeechKit.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -73,6 +103,11 @@
 		0F379FA617BAE4F00013F698 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0F379FD317BAE5B00013F698 /* Security.framework */,
+				0F379FD117BAE5A70013F698 /* CFNetwork.framework */,
+				0F379FCF17BAE59A0013F698 /* AVFoundation.framework */,
+				0F379FCD17BAE58A0013F698 /* AudioToolbox.framework */,
+				0F379FCA17BAE5530013F698 /* ATTSpeechKit */,
 				0F379FA717BAE4F00013F698 /* UIKit.framework */,
 				0F379FA917BAE4F00013F698 /* Foundation.framework */,
 				0F379FAB17BAE4F00013F698 /* CoreGraphics.framework */,
@@ -83,11 +118,19 @@
 		0F379FAD17BAE4F00013F698 /* HackathonTextToSpeech */ = {
 			isa = PBXGroup;
 			children = (
+				0F520AF617CC71C20081CABA /* SpeechConfig.h */,
+				0F520AF717CC71C20081CABA /* SpeechConfig.m */,
 				0F379FB617BAE4F00013F698 /* DMAppDelegate.h */,
 				0F379FB717BAE4F00013F698 /* DMAppDelegate.m */,
 				0F379FBF17BAE4F10013F698 /* MainStoryboard.storyboard */,
 				0F379FC217BAE4F10013F698 /* DMViewController.h */,
 				0F379FC317BAE4F10013F698 /* DMViewController.m */,
+				0F379FD517BAE6170013F698 /* DMTextToSpeechEasyAPI.h */,
+				0F379FD617BAE6170013F698 /* DMTextToSpeechEasyAPI.m */,
+				0F520AF017CC71190081CABA /* SpeechAuth.h */,
+				0F520AF117CC71190081CABA /* SpeechAuth.m */,
+				0F520AF217CC71190081CABA /* TTSRequest.h */,
+				0F520AF317CC71190081CABA /* TTSRequest.m */,
 				0F379FAE17BAE4F00013F698 /* Supporting Files */,
 			);
 			path = HackathonTextToSpeech;
@@ -105,6 +148,16 @@
 				0F379FBD17BAE4F10013F698 /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		0F379FCA17BAE5530013F698 /* ATTSpeechKit */ = {
+			isa = PBXGroup;
+			children = (
+				0F520AED17CC6CF00081CABA /* ATTSpeechKit.a */,
+				0F520AEE17CC6CF00081CABA /* ATTSpeechKit.h */,
+				0F379FCB17BAE5530013F698 /* .gitignore */,
+			);
+			path = ATTSpeechKit;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -164,6 +217,7 @@
 				0F379FBC17BAE4F10013F698 /* Default@2x.png in Resources */,
 				0F379FBE17BAE4F10013F698 /* Default-568h@2x.png in Resources */,
 				0F379FC117BAE4F10013F698 /* MainStoryboard.storyboard in Resources */,
+				0F379FCC17BAE5530013F698 /* .gitignore in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -177,6 +231,10 @@
 				0F379FB417BAE4F00013F698 /* main.m in Sources */,
 				0F379FB817BAE4F00013F698 /* DMAppDelegate.m in Sources */,
 				0F379FC417BAE4F10013F698 /* DMViewController.m in Sources */,
+				0F379FD717BAE6170013F698 /* DMTextToSpeechEasyAPI.m in Sources */,
+				0F520AF417CC711A0081CABA /* SpeechAuth.m in Sources */,
+				0F520AF517CC711A0081CABA /* TTSRequest.m in Sources */,
+				0F520AF817CC71C30081CABA /* SpeechConfig.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -261,9 +319,14 @@
 		0F379FC817BAE4F10013F698 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HackathonTextToSpeech/HackathonTextToSpeech-Prefix.pch";
 				INFOPLIST_FILE = "HackathonTextToSpeech/HackathonTextToSpeech-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/ATTSpeechKit\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -272,9 +335,14 @@
 		0F379FC917BAE4F10013F698 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HackathonTextToSpeech/HackathonTextToSpeech-Prefix.pch";
 				INFOPLIST_FILE = "HackathonTextToSpeech/HackathonTextToSpeech-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/ATTSpeechKit\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -299,6 +367,7 @@
 				0F379FC917BAE4F10013F698 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
