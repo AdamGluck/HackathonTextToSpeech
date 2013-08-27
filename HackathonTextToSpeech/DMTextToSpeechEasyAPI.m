@@ -39,12 +39,15 @@
     return self;
 }
 
-
 -(void)readText:(NSString *)text
 {
     [self startTTS: text];
 }
 
+-(void)retry
+{
+    [self prepareSpeech];
+}
 
 #pragma mark - speech methods
 - (void) prepareSpeech
@@ -53,9 +56,9 @@
     NSError* error = nil;
     [[AVAudioSession sharedInstance] setCategory: AVAudioSessionCategoryPlayback error: &error];
     if (error != nil) {
-        NSLog(@"Not able to initialize audio session for playback: %@", error);
+        [self delegateMethodSpeechPreparationFailed];
+        [self delegateMethodSpeechFailedWithSimpleSpeechError:AudioError andNSError:error];
     }
-    
     // Access the SpeechKit singleton.
     ATTSpeechService* speechService = [ATTSpeechService sharedSpeechService];
     speechService.recognitionURL = self.oauthURL;
@@ -74,14 +77,14 @@
     self.ttsInProgress = textToSpeak;
     [tts postText: textToSpeak forClient: ^(NSData* audioData, NSError* error) {
         if (![textToSpeak isEqualToString: self.ttsInProgress]) {
-            // TTS was canceled, so don't play it back.
+            [self delegateMethodSpeechFailedWithSimpleSpeechError:SpeechCanceledByUser andNSError:error];
         }
         else if (audioData != nil) {
-            NSLog(@"Text to Speech returned %d bytes of audio.", audioData.length);
             [self playAudioData: audioData];
         }
         else {
-            NSLog(@"Unable to convert text to speech: %@", error);            
+            [self delegateMethodTextConversionFailedFromText:textToSpeak withError:error];
+
         }
     }];
 }
@@ -92,11 +95,11 @@
     NSError* error = nil;
     [[AVAudioSession sharedInstance] setCategory: AVAudioSessionCategoryPlayback error: &error];
     if (error != nil) {
-        NSLog(@"Not able to set audio session for playback: %@", error);
+        [self delegateMethodSpeechFailedWithSimpleSpeechError:AudioError andNSError:error];
     }
     AVAudioPlayer* newPlayer = [[AVAudioPlayer alloc] initWithData: audioData error: &error];
     if (newPlayer == nil) {
-        NSLog(@"Unable to play TTS audio data: %@", error);
+        [self delegateMethodSpeechFailedWithSimpleSpeechError:AudioError andNSError:error];
     }
     [newPlayer play];
     self.audioPlayer = newPlayer;
@@ -130,13 +133,11 @@
          if (token) {
              self.oauthToken = token;
              speechService.bearerAuthToken = token;
-#warning commented out code make delegate mehtod
-             //[self readyForSpeech];
+             [self delegateMethodSpeechPreparationSucceeded];
          }
          else {
              self.oauthToken = nil;
-#warning make delegate method
-             //[self speechAuthFailed: error];
+             [self delegateMethodSpeechPreparationFailed];
          }
      }];
 }
@@ -145,7 +146,7 @@
 #pragma mark - Speech to text
 #pragma mark - Start/stop STT
 
-- (void) listen
+- (ATTSpeechService *) listen
 {
     // Don't let TTS playback interfere with audio capture.
     [self stopTTS];
@@ -154,11 +155,7 @@
     [NSDictionary dictionaryWithObjectsAndKeys:
      @"main", @"ClientScreen", nil];
     [speechService startListening];
-}
-
-- (void) handleRecognition: (NSString*) recognizedText
-{
-#warning make this into a delegate method
+    return speechService;
 }
 
 #pragma mark - delegate methods
@@ -181,10 +178,9 @@
     if (nbest != nil && nbest.count > 0)
         recognizedText = [nbest objectAtIndex: 0];
     if (recognizedText.length) { // non-empty?
-        [self handleRecognition: recognizedText];
-    }
-    else {
-        
+        [self delegateMethodSpeechWasRecognizedWithText:recognizedText];
+    } else {
+        [self delegateMethodSpeechFailedWithSimpleSpeechError:SpeechNotRecognized andNSError:nil];
     }
 }
 
@@ -195,8 +191,45 @@
         && (error.code == ATTSpeechServiceErrorCodeCanceledByUser)) {
         NSLog(@"Speech service canceled");
         return;
-    }
-    NSLog(@"Speech service had an error: %@", error);
+    } 
+    [self delegateMethodSpeechFailedWithSimpleSpeechError:SpeechFailed andNSError:error];
 }
 
+#pragma mark - DMTextToSpeechEasyAPI delegate methods
+
+-(void)delegateMethodSpeechPreparationSucceeded
+{
+    if ([self.delegate respondsToSelector:@selector(speechPreparationSucceeded)]){
+        [self.delegate speechPreparationSucceeded];
+    }
+}
+
+-(void)delegateMethodSpeechPreparationFailed
+{
+    if ([self.delegate respondsToSelector:@selector(speechPreparationFailed)]){
+        [self.delegate speechPreparationFailed];
+    }
+}
+
+-(void)delegateMethodSpeechWasRecognizedWithText:(NSString *)text
+{
+    if ([self.delegate respondsToSelector:@selector(speechWasRecognizedWithText:)]){
+        [self.delegate speechWasRecognizedWithText:text];
+    }
+}
+
+-(void)delegateMethodSpeechFailedWithSimpleSpeechError: (SimpleSpeechError) simpleError andNSError:(NSError *)error
+{
+    if ([self.delegate respondsToSelector:@selector(speechFailedWithSimpleSpeechError:)]){
+        [self.delegate speechFailedWithSimpleSpeechError:simpleError andNSError:error];
+    }
+}
+
+
+-(void)delegateMethodTextConversionFailedFromText:(NSString *) text withError:(NSError *) error
+{
+    if ([self.delegate respondsToSelector:@selector(textConversionFailedFromText:)]){
+        [self.delegate textConversionFailedFromText:text withError:error];
+    }
+}
 @end
