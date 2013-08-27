@@ -27,7 +27,6 @@
 		0F520AEF17CC6CF00081CABA /* ATTSpeechKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F520AED17CC6CF00081CABA /* ATTSpeechKit.a */; };
 		0F520AF417CC711A0081CABA /* SpeechAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F520AF117CC71190081CABA /* SpeechAuth.m */; };
 		0F520AF517CC711A0081CABA /* TTSRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F520AF317CC71190081CABA /* TTSRequest.m */; };
-		0F520AF817CC71C30081CABA /* SpeechConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F520AF717CC71C20081CABA /* SpeechConfig.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,8 +59,6 @@
 		0F520AF117CC71190081CABA /* SpeechAuth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpeechAuth.m; sourceTree = "<group>"; };
 		0F520AF217CC71190081CABA /* TTSRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTSRequest.h; sourceTree = "<group>"; };
 		0F520AF317CC71190081CABA /* TTSRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTSRequest.m; sourceTree = "<group>"; };
-		0F520AF617CC71C20081CABA /* SpeechConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeechConfig.h; sourceTree = "<group>"; };
-		0F520AF717CC71C20081CABA /* SpeechConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpeechConfig.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,8 +115,6 @@
 		0F379FAD17BAE4F00013F698 /* HackathonTextToSpeech */ = {
 			isa = PBXGroup;
 			children = (
-				0F520AF617CC71C20081CABA /* SpeechConfig.h */,
-				0F520AF717CC71C20081CABA /* SpeechConfig.m */,
 				0F379FB617BAE4F00013F698 /* DMAppDelegate.h */,
 				0F379FB717BAE4F00013F698 /* DMAppDelegate.m */,
 				0F379FBF17BAE4F10013F698 /* MainStoryboard.storyboard */,
@@ -127,10 +122,7 @@
 				0F379FC317BAE4F10013F698 /* DMViewController.m */,
 				0F379FD517BAE6170013F698 /* DMTextToSpeechEasyAPI.h */,
 				0F379FD617BAE6170013F698 /* DMTextToSpeechEasyAPI.m */,
-				0F520AF017CC71190081CABA /* SpeechAuth.h */,
-				0F520AF117CC71190081CABA /* SpeechAuth.m */,
-				0F520AF217CC71190081CABA /* TTSRequest.h */,
-				0F520AF317CC71190081CABA /* TTSRequest.m */,
+				0F520AF917CC7F6A0081CABA /* ATT Resources */,
 				0F379FAE17BAE4F00013F698 /* Supporting Files */,
 			);
 			path = HackathonTextToSpeech;
@@ -158,6 +150,17 @@
 				0F379FCB17BAE5530013F698 /* .gitignore */,
 			);
 			path = ATTSpeechKit;
+			sourceTree = "<group>";
+		};
+		0F520AF917CC7F6A0081CABA /* ATT Resources */ = {
+			isa = PBXGroup;
+			children = (
+				0F520AF017CC71190081CABA /* SpeechAuth.h */,
+				0F520AF117CC71190081CABA /* SpeechAuth.m */,
+				0F520AF217CC71190081CABA /* TTSRequest.h */,
+				0F520AF317CC71190081CABA /* TTSRequest.m */,
+			);
+			name = "ATT Resources";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -234,7 +237,6 @@
 				0F379FD717BAE6170013F698 /* DMTextToSpeechEasyAPI.m in Sources */,
 				0F520AF417CC711A0081CABA /* SpeechAuth.m in Sources */,
 				0F520AF517CC711A0081CABA /* TTSRequest.m in Sources */,
-				0F520AF817CC71C30081CABA /* SpeechConfig.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

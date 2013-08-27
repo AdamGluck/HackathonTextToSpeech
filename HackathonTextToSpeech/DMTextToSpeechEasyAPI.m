@@ -67,6 +67,7 @@
 }
 
 #pragma mark - implementation methods
+#pragma mark - start/stop TTS
 - (void) startTTS: (NSString*) textToSpeak
 {
     TTSRequest* tts = [TTSRequest forService: self.TTSUrl withOAuth: self.oauthToken];
@@ -87,7 +88,7 @@
 
 - (void) playAudioData: (NSData*) audioData
 {
-    //[self stopPlaying];
+    [self stopPlaying];
     NSError* error = nil;
     [[AVAudioSession sharedInstance] setCategory: AVAudioSessionCategoryPlayback error: &error];
     if (error != nil) {
@@ -101,6 +102,24 @@
     self.audioPlayer = newPlayer;
 }
 
+- (void) stopTTS
+{
+    self.ttsInProgress = nil;
+    [self stopPlaying];
+}
+
+- (void) stopPlaying
+{
+    AVAudioPlayer* oldPlayer = self.audioPlayer;
+    if (oldPlayer != nil) {
+        [oldPlayer stop];
+        self.audioPlayer = nil;
+    }
+}
+
+#pragma mark - Security
+#pragma mark - Oauth Validation
+
 - (void) validateOAuthForService: (ATTSpeechService*) speechService
 {
     [[SpeechAuth authenticatorForService: self.oauthURL
@@ -111,21 +130,39 @@
          if (token) {
              self.oauthToken = token;
              speechService.bearerAuthToken = token;
-#warning commented out code, implement later
+#warning commented out code make delegate mehtod
              //[self readyForSpeech];
          }
          else {
              self.oauthToken = nil;
+#warning make delegate method
              //[self speechAuthFailed: error];
          }
      }];
 }
 
 
+#pragma mark - Speech to text
+#pragma mark - Start/stop STT
+
+- (void) listen
+{
+    // Don't let TTS playback interfere with audio capture.
+    [self stopTTS];
+    ATTSpeechService* speechService = [ATTSpeechService sharedSpeechService];
+    speechService.xArgs =
+    [NSDictionary dictionaryWithObjectsAndKeys:
+     @"main", @"ClientScreen", nil];
+    [speechService startListening];
+}
+
+- (void) handleRecognition: (NSString*) recognizedText
+{
+#warning make this into a delegate method
+}
+
 #pragma mark - delegate methods
-/**
- * The AT&T Speech to Text service returned a result.
- **/
+
 - (void) speechServiceSucceeded: (ATTSpeechService*) speechService
 {
     NSLog(@"Speech service succeeded");
@@ -144,23 +181,19 @@
     if (nbest != nil && nbest.count > 0)
         recognizedText = [nbest objectAtIndex: 0];
     if (recognizedText.length) { // non-empty?
-        //[self handleRecognition: recognizedText];
+        [self handleRecognition: recognizedText];
     }
     else {
         
     }
 }
 
-/**
- * The AT&T Speech SDK or Speech to Text service returned an error.
- **/
 - (void) speechService: (ATTSpeechService*) speechService
        failedWithError: (NSError*) error
 {
     if ([error.domain isEqualToString: ATTSpeechServiceErrorDomain]
         && (error.code == ATTSpeechServiceErrorCodeCanceledByUser)) {
         NSLog(@"Speech service canceled");
-        // Nothing to do in this case
         return;
     }
     NSLog(@"Speech service had an error: %@", error);
