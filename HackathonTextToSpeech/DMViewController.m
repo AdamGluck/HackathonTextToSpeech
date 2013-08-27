@@ -8,7 +8,7 @@
 
 #import "DMTextToSpeechEasyAPI.h"
 
-@interface DMViewController () 
+@interface DMViewController () <DMTextToSpeechEasyAPIDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *textField;
 @property (strong, nonatomic) DMTextToSpeechEasyAPI * easyAccess;
 @end
@@ -18,13 +18,39 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.easyAccess = [[DMTextToSpeechEasyAPI alloc] init];
 }
 
 - (IBAction)readTextField:(id)sender
 {
     [self.easyAccess readText:self.textField.text];
 }
+- (IBAction)listen:(id)sender
+{
+    [self.easyAccess listen];
+}
+-(void)speechWasRecognizedWithText:(NSString *)text
+{
+    self.textField.text = text;
+}
+
+-(void)speechAuthenticationSucceeded
+{
+    NSLog(@"speech prep succeeded");
+}
+
+-(void)speechAuthenticationFailed
+{
+    NSLog(@"speech prep failed");
+}
+
+-(DMTextToSpeechEasyAPI *)easyAccess
+{
+    if (!_easyAccess){
+        _easyAccess = [[DMTextToSpeechEasyAPI alloc] initWithDelegate: self];
+    }
+    return _easyAccess;
+}
+
 
 - (void)didReceiveMemoryWarning
 {

@@ -321,6 +321,7 @@
 		0F379FC817BAE4F10013F698 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = armv7;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HackathonTextToSpeech/HackathonTextToSpeech-Prefix.pch";
@@ -330,6 +331,7 @@
 					"\"$(SRCROOT)/ATTSpeechKit\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALID_ARCHS = armv7;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -346,6 +348,7 @@
 					"\"$(SRCROOT)/ATTSpeechKit\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALID_ARCHS = armv7;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

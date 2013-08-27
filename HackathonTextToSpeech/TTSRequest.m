@@ -90,11 +90,9 @@ static const NSTimeInterval CONNECT_TIMEOUT = 30.0; // seconds
     [request setValue: [NSString stringWithFormat: @"BEARER %@", oauthToken]
         forHTTPHeaderField: @"Authorization"];
     request.timeoutInterval = CONNECT_TIMEOUT;   
-    
     // TODO: Add the other request properties needed by your application,
     //       such as response type, language, etc.
     [request setValue: @"audio/wav" forHTTPHeaderField: @"Accept"];
-    
     return [[self alloc] initWithRequest: request];
 }
 
@@ -177,7 +175,6 @@ static const NSTimeInterval CONNECT_TIMEOUT = 30.0; // seconds
 
 // NSURLConnection delegate methods
 
-
 - (void) connection: (NSURLConnection*) connection 
  didReceiveResponse: (NSURLResponse*) response
 {
@@ -199,7 +196,7 @@ static const NSTimeInterval CONNECT_TIMEOUT = 30.0; // seconds
 {
     // Loading is complete. 
     state = LoaderStateFinished;
-
+    
     NSError* error = nil;
     BOOL succeeded = NO;
     if (self.statusCode == 200 && _data.length) {

@@ -7,10 +7,18 @@
 //
 
 #import "DMTextToSpeechEasyAPI.h"
+typedef NS_ENUM(NSInteger, AuthenticationStatus){
+    AuthenticationFailed,
+    Authenticated,
+    AuthenticationInProgress
+};
+
 @interface DMTextToSpeechEasyAPI()<ATTSpeechServiceDelegate>
-@property (strong,nonatomic) NSString* oauthToken;
-@property (strong,nonatomic) NSString* ttsInProgress;
-@property (retain,nonatomic) AVAudioPlayer* audioPlayer;
+
+@property (assign) AuthenticationStatus authenticationStatus;
+@property (strong, nonatomic) NSString* oauthToken;
+@property (strong, nonatomic) NSString* ttsInProgress;
+@property (retain, nonatomic) AVAudioPlayer* audioPlayer;
 @property (strong, nonatomic) NSURL * speechServiceURL;
 @property (strong, nonatomic) NSURL * TTSUrl;
 @property (strong, nonatomic) NSURL * oauthURL;
@@ -23,25 +31,58 @@
 
 #pragma mark - public methods
 
--(DMTextToSpeechEasyAPI *) init
+-(DMTextToSpeechEasyAPI *) initWithOauthKey: (NSString *)oauthKey andOauthSecret: (NSString *) oauthSecret andDelegate: (id) delegate
 {
     self = [super init];
     if (self){
-        NSDictionary *dictionary = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Info" ofType:@"plist"]];
-        self.oauthKey = dictionary[@"ATTOauthKey"];
-        self.oauthSecret = dictionary[@"ATTSecret"];
+        self.oauthKey = [oauthKey copy];
+        self.oauthSecret = [oauthSecret copy];
         self.speechServiceURL = [NSURL URLWithString: @"https://api.att.com/speech/v3/speechToText"];
         self.TTSUrl = [NSURL URLWithString: @"https://api.att.com/speech/v3/textToSpeech"];
         self.oauthURL = [NSURL URLWithString: @"https://api.att.com/oauth/token"];
         self.oauthScope = @"TTS,SPEECH";
+        self.delegate = delegate;
         [self prepareSpeech];
     }
     return self;
 }
 
+-(DMTextToSpeechEasyAPI *) initWithDelegate: (id) delegate
+{
+    NSDictionary *dictionary = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Info" ofType:@"plist"]];
+    self = [self initWithOauthKey:dictionary[@"ATTOauthKey"] andOauthSecret:dictionary[@"ATTSecret"] andDelegate:delegate];
+    return self;
+}
+
+-(DMTextToSpeechEasyAPI *) init
+{
+    NSDictionary *dictionary = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Info" ofType:@"plist"]];
+    self = [self initWithOauthKey:dictionary[@"ATTOauthKey"] andOauthSecret:dictionary[@"ATTSecret"] andDelegate:nil];
+    return self;
+}
+
 -(void)readText:(NSString *)text
 {
-    [self startTTS: text];
+    if (self.authenticationStatus == AuthenticationInProgress){
+        dispatch_queue_t blockQueue = dispatch_queue_create("Block if authenticating", NULL);
+        dispatch_async(blockQueue, ^{
+            // block on async thread so it doesn't hold up drawing on main thread
+            // this makes it so the app doesn't break with lazy instantiation and instead just delays
+            NSInteger tries = 0;
+            while (self.authenticationStatus == AuthenticationInProgress && tries < 5){
+                sleep(1);
+                tries++;
+            }
+            
+            if (self.authenticationStatus == Authenticated){
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self startTTS: text];
+                });
+            }
+        });
+    } else {
+        [self startTTS:text];
+    }
 }
 
 -(void)retry
@@ -56,12 +97,11 @@
     NSError* error = nil;
     [[AVAudioSession sharedInstance] setCategory: AVAudioSessionCategoryPlayback error: &error];
     if (error != nil) {
-        [self delegateMethodSpeechPreparationFailed];
         [self delegateMethodSpeechFailedWithSimpleSpeechError:AudioError andNSError:error];
     }
     // Access the SpeechKit singleton.
     ATTSpeechService* speechService = [ATTSpeechService sharedSpeechService];
-    speechService.recognitionURL = self.oauthURL;
+    speechService.recognitionURL = self.speechServiceURL;
     speechService.delegate = self;
     speechService.speechContext = @"QuestionAndAnswer";
     [self validateOAuthForService: speechService];
@@ -75,6 +115,7 @@
 {
     TTSRequest* tts = [TTSRequest forService: self.TTSUrl withOAuth: self.oauthToken];
     self.ttsInProgress = textToSpeak;
+    
     [tts postText: textToSpeak forClient: ^(NSData* audioData, NSError* error) {
         if (![textToSpeak isEqualToString: self.ttsInProgress]) {
             [self delegateMethodSpeechFailedWithSimpleSpeechError:SpeechCanceledByUser andNSError:error];
@@ -84,7 +125,6 @@
         }
         else {
             [self delegateMethodTextConversionFailedFromText:textToSpeak withError:error];
-
         }
     }];
 }
@@ -125,19 +165,22 @@
 
 - (void) validateOAuthForService: (ATTSpeechService*) speechService
 {
+    self.authenticationStatus = AuthenticationInProgress;
     [[SpeechAuth authenticatorForService: self.oauthURL
                                   withId: self.oauthKey
                                   secret: self.oauthSecret
                                    scope: self.oauthScope]
      fetchTo: ^(NSString* token, NSError* error) {
          if (token) {
+             self.authenticationStatus = Authenticated;
              self.oauthToken = token;
              speechService.bearerAuthToken = token;
-             [self delegateMethodSpeechPreparationSucceeded];
+             [self delegateMethodSpeechAuthenticationSucceeded];
          }
          else {
+             self.authenticationStatus = AuthenticationFailed;
              self.oauthToken = nil;
-             [self delegateMethodSpeechPreparationFailed];
+             [self delegateMethodSpeechAuthenticationFailed];
          }
      }];
 }
@@ -163,7 +206,6 @@
 - (void) speechServiceSucceeded: (ATTSpeechService*) speechService
 {
     NSLog(@"Speech service succeeded");
-    
     // Extract the needed data from the SpeechService object:
     // For raw bytes, read speechService.responseData.
     // For a JSON tree, read speechService.responseDictionary.
@@ -191,23 +233,24 @@
         && (error.code == ATTSpeechServiceErrorCodeCanceledByUser)) {
         NSLog(@"Speech service canceled");
         return;
-    } 
+    }
+    NSLog(@"speech service failed with error %@", error.localizedDescription);
     [self delegateMethodSpeechFailedWithSimpleSpeechError:SpeechFailed andNSError:error];
 }
 
 #pragma mark - DMTextToSpeechEasyAPI delegate methods
 
--(void)delegateMethodSpeechPreparationSucceeded
+-(void)delegateMethodSpeechAuthenticationSucceeded
 {
-    if ([self.delegate respondsToSelector:@selector(speechPreparationSucceeded)]){
-        [self.delegate speechPreparationSucceeded];
+    if ([self.delegate respondsToSelector:@selector(speechAuthenticationSucceeded)]){
+        [self.delegate speechAuthenticationSucceeded];
     }
 }
 
--(void)delegateMethodSpeechPreparationFailed
+-(void)delegateMethodSpeechAuthenticationFailed
 {
     if ([self.delegate respondsToSelector:@selector(speechPreparationFailed)]){
-        [self.delegate speechPreparationFailed];
+        [self.delegate speechAuthenticationFailed];
     }
 }
 
