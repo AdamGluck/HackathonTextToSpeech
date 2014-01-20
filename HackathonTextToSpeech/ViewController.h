@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DMViewController : UIViewController
+@interface ViewController : UIViewController
 
 @end

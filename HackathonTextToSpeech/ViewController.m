@@ -1,23 +1,25 @@
 //
-//  DMViewController.m
+//  ATTViewController.m
 //  HackathonTextToSpeech
 //
 //  Created by Adam Gluck on 8/13/13.
 //  Copyright (c) 2013 DataMason. All rights reserved.
 //
 
-#import "DMTextToSpeechEasyAPI.h"
+#import "TTSEasyAPI.h"
+#import "ViewController.h"
 
-@interface DMViewController () <DMTextToSpeechEasyAPIDelegate>
+@interface UIViewController () <TTSEasyAPIDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *textField;
-@property (strong, nonatomic) DMTextToSpeechEasyAPI * easyAccess;
+@property (strong, nonatomic) TTSEasyAPI * easyAccess;
 @end
 
-@implementation DMViewController
+@implementation ViewController
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.easyAccess = [[TTSEasyAPI alloc] initWithDelegate:self];
 }
 
 - (IBAction)readTextField:(id)sender
@@ -42,15 +44,6 @@
 {
     NSLog(@"speech prep failed");
 }
-
--(DMTextToSpeechEasyAPI *)easyAccess
-{
-    if (!_easyAccess){
-        _easyAccess = [[DMTextToSpeechEasyAPI alloc] initWithDelegate: self];
-    }
-    return _easyAccess;
-}
-
 
 - (void)didReceiveMemoryWarning
 {

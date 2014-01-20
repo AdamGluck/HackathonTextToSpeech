@@ -1,0 +1,66 @@
+# iOS SpeechKit Change History
+
+
+## Version 2.1.1 (12 September 2013)
+
+* Fixed crash when user cancels processing and then quickly starts a new interaction.
+* Allow listening/processing UI to show multiple lines of text on iOS 7.
+
+## Version 2.1.0 (29 August 2013)
+
+* Fixed crash on iOS 7 beta when displaying listening and progress UI.
+** The new listening/progress UI has proper look-and-feel on iOS 7.
+* Changed default codec to Speex-WB instead AMR-NB.
+* Added property ATTSpeechService.httpMethod which supports "PUT" in addition to POST.
+* Old methods previously marked deprecated have been removed to make
+  library smaller.
+** startRecordingTimeout -- replace with maxInitialSilence
+** stopRecordingTimeout -- replace with endingSilence
+** startWithMicrophone -- replace with startListening
+** clearResponse -- no replacement, no longer needed
+** ATTSpeechServiceErrorCodeRecordingFailure, ATTSpeechServiceErrorCodeNoDelegate, ATTSpeechServiceErrorUnintelligible -- no replacement, never returned by Speech SDK
+** ATTSpeechServiceErrorCodeAudioFailure -- replace with ATTSpeechServiceErrorCodeAudioTooShort
+* Removed support for iOS 4.x.  Speech SDK now support iOS 5.0 and later.
+
+## Version 2.0.3 (25 July 2013)
+
+* Fixed bug in which custom UI messages were ignored.
+
+## Version 2.0.2 (19 July 2013)
+
+* Fixed crash when rapidly cycling between start/stop/cancel.
+* Cleaned up log messages.  
+
+## Version 2.0.1 (10 May 2013)
+
+* Add support for Speex wideband audio format, which yields 5% improvement in word accuracy
+* Fix issue with endpointing in apps that use custom audio UI
+
+## Version 2.0.0 (18 March 2013)
+
+Major revision to the internals of SpeechKit to keep pace with new features of Speech to Text API: 
+
+* Support inline grammars through multipart data requests 
+* Enable WAV submission in addition to AMR 
+* Add support for X-Arg speech arguments with xArgs and sendsDefaultXArgs properties. 
+* Remove features that were deprecated in version 1.5. 
+
+## Version 1.5.2 (16 November 2012) 
+
+Several bug fixes: 
+
+* Fix appearance of progress UI on iPad in landscape mode 
+* Restored BasicAuthUser and BasicAuthPassword properties 
+* Ensure that the audio system is fully initialized, even when the client doesn't call the prepare method 
+
+## Version 1.5.1 (11 October 2012) 
+
+Several bug fixes: 
+
+* silence detection on iPhone 5 
+* crash on connection failure with bad URLs 
+* calling delegate twice when user cancels 
+
+## Version 1.5.0 (20 July 2012) 
+
+First general release of SpeechKit as the Speech SDK.

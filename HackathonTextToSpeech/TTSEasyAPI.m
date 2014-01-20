@@ -6,16 +6,10 @@
 //  Copyright (c) 2013 DataMason. All rights reserved.
 //
 
-#import "DMTextToSpeechEasyAPI.h"
-typedef NS_ENUM(NSInteger, AuthenticationStatus){
-    AuthenticationFailed,
-    Authenticated,
-    AuthenticationInProgress
-};
+#import "TTSEasyAPI.h"
 
-@interface DMTextToSpeechEasyAPI()<ATTSpeechServiceDelegate>
+@interface TTSEasyAPI()<ATTSpeechServiceDelegate>
 
-@property (assign) AuthenticationStatus authenticationStatus;
 @property (strong, nonatomic) NSString* oauthToken;
 @property (strong, nonatomic) NSString* ttsInProgress;
 @property (retain, nonatomic) AVAudioPlayer* audioPlayer;
@@ -27,11 +21,11 @@ typedef NS_ENUM(NSInteger, AuthenticationStatus){
 @property (strong, nonatomic) NSString * oauthScope;
 @end
 
-@implementation DMTextToSpeechEasyAPI
+@implementation TTSEasyAPI
 
 #pragma mark - public methods
 
--(DMTextToSpeechEasyAPI *) initWithOauthKey: (NSString *)oauthKey andOauthSecret: (NSString *) oauthSecret andDelegate: (id) delegate
+-(TTSEasyAPI *) initWithOauthKey: (NSString *)oauthKey andOauthSecret: (NSString *) oauthSecret andDelegate: (id) delegate
 {
     self = [super init];
     if (self){
@@ -47,14 +41,14 @@ typedef NS_ENUM(NSInteger, AuthenticationStatus){
     return self;
 }
 
--(DMTextToSpeechEasyAPI *) initWithDelegate: (id) delegate
+-(TTSEasyAPI *) initWithDelegate: (id) delegate
 {
     NSDictionary *dictionary = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Info" ofType:@"plist"]];
     self = [self initWithOauthKey:dictionary[@"ATTOauthKey"] andOauthSecret:dictionary[@"ATTSecret"] andDelegate:delegate];
     return self;
 }
 
--(DMTextToSpeechEasyAPI *) init
+-(TTSEasyAPI *) init
 {
     NSDictionary *dictionary = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Info" ofType:@"plist"]];
     self = [self initWithOauthKey:dictionary[@"ATTOauthKey"] andOauthSecret:dictionary[@"ATTSecret"] andDelegate:nil];
@@ -63,18 +57,20 @@ typedef NS_ENUM(NSInteger, AuthenticationStatus){
 
 -(void)readText:(NSString *)text
 {
+    __weak typeof(self) weakSelf = self;
+
     if (self.authenticationStatus == AuthenticationInProgress){
         dispatch_queue_t blockQueue = dispatch_queue_create("Block if authenticating", NULL);
         dispatch_async(blockQueue, ^{
             // block on async thread so it doesn't hold up drawing on main thread
             // this makes it so the app doesn't break with lazy instantiation and instead just delays
             NSInteger tries = 0;
-            while (self.authenticationStatus == AuthenticationInProgress && tries < 5){
+            while (weakSelf.authenticationStatus == AuthenticationInProgress && tries < 5){
                 sleep(1);
                 tries++;
             }
             
-            if (self.authenticationStatus == Authenticated){
+            if (weakSelf.authenticationStatus == Authenticated){
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [self startTTS: text];
                 });
@@ -267,7 +263,6 @@ typedef NS_ENUM(NSInteger, AuthenticationStatus){
         [self.delegate speechFailedWithSimpleSpeechError:simpleError andNSError:error];
     }
 }
-
 
 -(void)delegateMethodTextConversionFailedFromText:(NSString *) text withError:(NSError *) error
 {

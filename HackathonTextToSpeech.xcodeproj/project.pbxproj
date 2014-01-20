@@ -12,21 +12,22 @@
 		0F379FAC17BAE4F00013F698 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F379FAB17BAE4F00013F698 /* CoreGraphics.framework */; };
 		0F379FB217BAE4F00013F698 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0F379FB017BAE4F00013F698 /* InfoPlist.strings */; };
 		0F379FB417BAE4F00013F698 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F379FB317BAE4F00013F698 /* main.m */; };
-		0F379FB817BAE4F00013F698 /* DMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F379FB717BAE4F00013F698 /* DMAppDelegate.m */; };
+		0F379FB817BAE4F00013F698 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F379FB717BAE4F00013F698 /* AppDelegate.m */; };
 		0F379FBA17BAE4F10013F698 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F379FB917BAE4F10013F698 /* Default.png */; };
 		0F379FBC17BAE4F10013F698 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F379FBB17BAE4F10013F698 /* Default@2x.png */; };
 		0F379FBE17BAE4F10013F698 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F379FBD17BAE4F10013F698 /* Default-568h@2x.png */; };
 		0F379FC117BAE4F10013F698 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F379FBF17BAE4F10013F698 /* MainStoryboard.storyboard */; };
-		0F379FC417BAE4F10013F698 /* DMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F379FC317BAE4F10013F698 /* DMViewController.m */; };
-		0F379FCC17BAE5530013F698 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 0F379FCB17BAE5530013F698 /* .gitignore */; };
+		0F379FC417BAE4F10013F698 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F379FC317BAE4F10013F698 /* ViewController.m */; };
 		0F379FCE17BAE58A0013F698 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F379FCD17BAE58A0013F698 /* AudioToolbox.framework */; };
 		0F379FD017BAE59A0013F698 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F379FCF17BAE59A0013F698 /* AVFoundation.framework */; };
 		0F379FD217BAE5A70013F698 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F379FD117BAE5A70013F698 /* CFNetwork.framework */; };
 		0F379FD417BAE5B00013F698 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F379FD317BAE5B00013F698 /* Security.framework */; };
-		0F379FD717BAE6170013F698 /* DMTextToSpeechEasyAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F379FD617BAE6170013F698 /* DMTextToSpeechEasyAPI.m */; };
-		0F520AEF17CC6CF00081CABA /* ATTSpeechKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F520AED17CC6CF00081CABA /* ATTSpeechKit.a */; };
+		0F379FD717BAE6170013F698 /* TTSEasyAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F379FD617BAE6170013F698 /* TTSEasyAPI.m */; };
 		0F520AF417CC711A0081CABA /* SpeechAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F520AF117CC71190081CABA /* SpeechAuth.m */; };
 		0F520AF517CC711A0081CABA /* TTSRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F520AF317CC71190081CABA /* TTSRequest.m */; };
+		0FCE807C188D255200E29589 /* ATT Speech SDK Developer Guide for iOS.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 0FCE8078188D255200E29589 /* ATT Speech SDK Developer Guide for iOS.pdf */; };
+		0FCE807E188D255200E29589 /* CHANGES.txt in Resources */ = {isa = PBXBuildFile; fileRef = 0FCE807B188D255200E29589 /* CHANGES.txt */; };
+		0FCE807F188D26E900E29589 /* ATTSpeechKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FCE8079188D255200E29589 /* ATTSpeechKit.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,27 +39,28 @@
 		0F379FB117BAE4F00013F698 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		0F379FB317BAE4F00013F698 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		0F379FB517BAE4F00013F698 /* HackathonTextToSpeech-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HackathonTextToSpeech-Prefix.pch"; sourceTree = "<group>"; };
-		0F379FB617BAE4F00013F698 /* DMAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DMAppDelegate.h; sourceTree = "<group>"; };
-		0F379FB717BAE4F00013F698 /* DMAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DMAppDelegate.m; sourceTree = "<group>"; };
+		0F379FB617BAE4F00013F698 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		0F379FB717BAE4F00013F698 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		0F379FB917BAE4F10013F698 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		0F379FBB17BAE4F10013F698 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		0F379FBD17BAE4F10013F698 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		0F379FC017BAE4F10013F698 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
-		0F379FC217BAE4F10013F698 /* DMViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DMViewController.h; sourceTree = "<group>"; };
-		0F379FC317BAE4F10013F698 /* DMViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DMViewController.m; sourceTree = "<group>"; };
-		0F379FCB17BAE5530013F698 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		0F379FC217BAE4F10013F698 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		0F379FC317BAE4F10013F698 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		0F379FCD17BAE58A0013F698 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		0F379FCF17BAE59A0013F698 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		0F379FD117BAE5A70013F698 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		0F379FD317BAE5B00013F698 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		0F379FD517BAE6170013F698 /* DMTextToSpeechEasyAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMTextToSpeechEasyAPI.h; sourceTree = "<group>"; };
-		0F379FD617BAE6170013F698 /* DMTextToSpeechEasyAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMTextToSpeechEasyAPI.m; sourceTree = "<group>"; };
-		0F520AED17CC6CF00081CABA /* ATTSpeechKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = ATTSpeechKit.a; sourceTree = "<group>"; };
-		0F520AEE17CC6CF00081CABA /* ATTSpeechKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATTSpeechKit.h; sourceTree = "<group>"; };
+		0F379FD517BAE6170013F698 /* TTSEasyAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTSEasyAPI.h; sourceTree = "<group>"; };
+		0F379FD617BAE6170013F698 /* TTSEasyAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTSEasyAPI.m; sourceTree = "<group>"; };
 		0F520AF017CC71190081CABA /* SpeechAuth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeechAuth.h; sourceTree = "<group>"; };
 		0F520AF117CC71190081CABA /* SpeechAuth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpeechAuth.m; sourceTree = "<group>"; };
 		0F520AF217CC71190081CABA /* TTSRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTSRequest.h; sourceTree = "<group>"; };
 		0F520AF317CC71190081CABA /* TTSRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTSRequest.m; sourceTree = "<group>"; };
+		0FCE8078188D255200E29589 /* ATT Speech SDK Developer Guide for iOS.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "ATT Speech SDK Developer Guide for iOS.pdf"; sourceTree = "<group>"; };
+		0FCE8079188D255200E29589 /* ATTSpeechKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = ATTSpeechKit.a; sourceTree = "<group>"; };
+		0FCE807A188D255200E29589 /* ATTSpeechKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATTSpeechKit.h; sourceTree = "<group>"; };
+		0FCE807B188D255200E29589 /* CHANGES.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CHANGES.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0FCE807F188D26E900E29589 /* ATTSpeechKit.a in Frameworks */,
 				0F379FD417BAE5B00013F698 /* Security.framework in Frameworks */,
 				0F379FD217BAE5A70013F698 /* CFNetwork.framework in Frameworks */,
 				0F379FD017BAE59A0013F698 /* AVFoundation.framework in Frameworks */,
@@ -73,7 +76,6 @@
 				0F379FA817BAE4F00013F698 /* UIKit.framework in Frameworks */,
 				0F379FAA17BAE4F00013F698 /* Foundation.framework in Frameworks */,
 				0F379FAC17BAE4F00013F698 /* CoreGraphics.framework in Frameworks */,
-				0F520AEF17CC6CF00081CABA /* ATTSpeechKit.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -100,11 +102,11 @@
 		0F379FA617BAE4F00013F698 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0FCE8077188D255200E29589 /* ATTSpeechKit-iOS-2.1.1 */,
 				0F379FD317BAE5B00013F698 /* Security.framework */,
 				0F379FD117BAE5A70013F698 /* CFNetwork.framework */,
 				0F379FCF17BAE59A0013F698 /* AVFoundation.framework */,
 				0F379FCD17BAE58A0013F698 /* AudioToolbox.framework */,
-				0F379FCA17BAE5530013F698 /* ATTSpeechKit */,
 				0F379FA717BAE4F00013F698 /* UIKit.framework */,
 				0F379FA917BAE4F00013F698 /* Foundation.framework */,
 				0F379FAB17BAE4F00013F698 /* CoreGraphics.framework */,
@@ -115,13 +117,13 @@
 		0F379FAD17BAE4F00013F698 /* HackathonTextToSpeech */ = {
 			isa = PBXGroup;
 			children = (
-				0F379FB617BAE4F00013F698 /* DMAppDelegate.h */,
-				0F379FB717BAE4F00013F698 /* DMAppDelegate.m */,
+				0F379FB617BAE4F00013F698 /* AppDelegate.h */,
+				0F379FB717BAE4F00013F698 /* AppDelegate.m */,
 				0F379FBF17BAE4F10013F698 /* MainStoryboard.storyboard */,
-				0F379FC217BAE4F10013F698 /* DMViewController.h */,
-				0F379FC317BAE4F10013F698 /* DMViewController.m */,
-				0F379FD517BAE6170013F698 /* DMTextToSpeechEasyAPI.h */,
-				0F379FD617BAE6170013F698 /* DMTextToSpeechEasyAPI.m */,
+				0F379FC217BAE4F10013F698 /* ViewController.h */,
+				0F379FC317BAE4F10013F698 /* ViewController.m */,
+				0F379FD517BAE6170013F698 /* TTSEasyAPI.h */,
+				0F379FD617BAE6170013F698 /* TTSEasyAPI.m */,
 				0F520AF917CC7F6A0081CABA /* ATT Resources */,
 				0F379FAE17BAE4F00013F698 /* Supporting Files */,
 			);
@@ -142,16 +144,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		0F379FCA17BAE5530013F698 /* ATTSpeechKit */ = {
-			isa = PBXGroup;
-			children = (
-				0F520AED17CC6CF00081CABA /* ATTSpeechKit.a */,
-				0F520AEE17CC6CF00081CABA /* ATTSpeechKit.h */,
-				0F379FCB17BAE5530013F698 /* .gitignore */,
-			);
-			path = ATTSpeechKit;
-			sourceTree = "<group>";
-		};
 		0F520AF917CC7F6A0081CABA /* ATT Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -161,6 +153,17 @@
 				0F520AF317CC71190081CABA /* TTSRequest.m */,
 			);
 			name = "ATT Resources";
+			sourceTree = "<group>";
+		};
+		0FCE8077188D255200E29589 /* ATTSpeechKit-iOS-2.1.1 */ = {
+			isa = PBXGroup;
+			children = (
+				0FCE8078188D255200E29589 /* ATT Speech SDK Developer Guide for iOS.pdf */,
+				0FCE8079188D255200E29589 /* ATTSpeechKit.a */,
+				0FCE807A188D255200E29589 /* ATTSpeechKit.h */,
+				0FCE807B188D255200E29589 /* CHANGES.txt */,
+			);
+			path = "ATTSpeechKit-iOS-2.1.1";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -215,12 +218,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0FCE807E188D255200E29589 /* CHANGES.txt in Resources */,
 				0F379FB217BAE4F00013F698 /* InfoPlist.strings in Resources */,
 				0F379FBA17BAE4F10013F698 /* Default.png in Resources */,
 				0F379FBC17BAE4F10013F698 /* Default@2x.png in Resources */,
+				0FCE807C188D255200E29589 /* ATT Speech SDK Developer Guide for iOS.pdf in Resources */,
 				0F379FBE17BAE4F10013F698 /* Default-568h@2x.png in Resources */,
 				0F379FC117BAE4F10013F698 /* MainStoryboard.storyboard in Resources */,
-				0F379FCC17BAE5530013F698 /* .gitignore in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -232,9 +236,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				0F379FB417BAE4F00013F698 /* main.m in Sources */,
-				0F379FB817BAE4F00013F698 /* DMAppDelegate.m in Sources */,
-				0F379FC417BAE4F10013F698 /* DMViewController.m in Sources */,
-				0F379FD717BAE6170013F698 /* DMTextToSpeechEasyAPI.m in Sources */,
+				0F379FB817BAE4F00013F698 /* AppDelegate.m in Sources */,
+				0F379FC417BAE4F10013F698 /* ViewController.m in Sources */,
+				0F379FD717BAE6170013F698 /* TTSEasyAPI.m in Sources */,
 				0F520AF417CC711A0081CABA /* SpeechAuth.m in Sources */,
 				0F520AF517CC711A0081CABA /* TTSRequest.m in Sources */,
 			);
@@ -326,9 +330,11 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HackathonTextToSpeech/HackathonTextToSpeech-Prefix.pch";
 				INFOPLIST_FILE = "HackathonTextToSpeech/HackathonTextToSpeech-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/ATTSpeechKit\"",
+					"\\\"$(SRCROOT)/ATTSpeechKit\\\"",
+					"/Users/adamgluck/Desktop/DDeveloper/Consulting/HackathonTextToSpeech/ATTSpeechKit-iOS-2.1.1",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				VALID_ARCHS = armv7;
@@ -339,13 +345,16 @@
 		0F379FC917BAE4F10013F698 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = armv7;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HackathonTextToSpeech/HackathonTextToSpeech-Prefix.pch";
 				INFOPLIST_FILE = "HackathonTextToSpeech/HackathonTextToSpeech-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/ATTSpeechKit\"",
+					"\\\"$(SRCROOT)/ATTSpeechKit\\\"",
+					"/Users/adamgluck/Desktop/DDeveloper/Consulting/HackathonTextToSpeech/ATTSpeechKit-iOS-2.1.1",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				VALID_ARCHS = armv7;

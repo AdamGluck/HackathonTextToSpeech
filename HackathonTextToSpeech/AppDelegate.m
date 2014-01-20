@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 DataMason. All rights reserved.
 //
 
-#import "DMAppDelegate.h"
+#import "AppDelegate.h"
 
-@implementation DMAppDelegate
+@implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
