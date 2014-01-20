@@ -31,7 +31,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="readTextField:" destination="2" eventType="touchUpInside" id="kkS-e1-Mev"/>
+                                    <action selector="readTextField:" destination="2" eventType="touchUpInside" id="zFE-E9-ZAa"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OHX-2f-XZc">
@@ -40,7 +40,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="listen:" destination="2" eventType="touchUpInside" id="Oln-Rh-lmo"/>
+                                    <action selector="listen:" destination="2" eventType="touchUpInside" id="iz6-1k-RAQ"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -55,7 +55,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="textField" destination="2XB-zZ-hwg" id="arX-CV-gfR"/>
+                        <outlet property="textField" destination="2XB-zZ-hwg" id="QQx-Te-Dxc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>

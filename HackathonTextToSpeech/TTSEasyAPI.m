@@ -64,10 +64,8 @@
         dispatch_async(blockQueue, ^{
             // block on async thread so it doesn't hold up drawing on main thread
             // this makes it so the app doesn't break with lazy instantiation and instead just delays
-            NSInteger tries = 0;
-            while (weakSelf.authenticationStatus == AuthenticationInProgress && tries < 5){
-                sleep(1);
-                tries++;
+            while (weakSelf.authenticationStatus == AuthenticationInProgress && weakSelf.authenticationStatus != AuthenticationFailed){
+                //block
             }
             
             if (weakSelf.authenticationStatus == Authenticated){

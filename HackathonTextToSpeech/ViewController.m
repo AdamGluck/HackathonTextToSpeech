@@ -9,7 +9,7 @@
 #import "TTSEasyAPI.h"
 #import "ViewController.h"
 
-@interface UIViewController () <TTSEasyAPIDelegate>
+@interface ViewController () <TTSEasyAPIDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *textField;
 @property (strong, nonatomic) TTSEasyAPI * easyAccess;
 @end
@@ -19,17 +19,19 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.easyAccess = [[TTSEasyAPI alloc] initWithDelegate:self];
+    //self.easyAccess = [[TTSEasyAPI alloc] initWithDelegate:self];
 }
 
 - (IBAction)readTextField:(id)sender
 {
     [self.easyAccess readText:self.textField.text];
 }
+
 - (IBAction)listen:(id)sender
 {
     [self.easyAccess listen];
 }
+
 -(void)speechWasRecognizedWithText:(NSString *)text
 {
     self.textField.text = text;
@@ -43,6 +45,14 @@
 -(void)speechAuthenticationFailed
 {
     NSLog(@"speech prep failed");
+}
+
+-(TTSEasyAPI *)easyAccess
+{
+    if (!_easyAccess){
+        _easyAccess = [[TTSEasyAPI alloc] initWithDelegate:self];
+    }
+    return _easyAccess;
 }
 
 - (void)didReceiveMemoryWarning
